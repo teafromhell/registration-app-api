@@ -84,13 +84,13 @@ function ListForm({ items, handleDelete, handleEdit, title, handleCreate }) {
                               defaultValue={item.login || input.login}
                               onChange={handleChange}
                             />
-                            {/* <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Password</label>
                             <input
                               type="text"
                               name="password"
                               defaultValue={item.password || input.password}
                               onChange={handleChange}
-                            /> */}
+                            />
                           </>
                         )}
                         <div className={styles.btns}>
