@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Form from "./Form";
 import { setUser } from "../store/userSlice";
@@ -9,28 +9,44 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [empty, setEmpty] = useState(false);
+  const [valid, setValid] = useState(false);
+
   const handleLogin = async (login, password) => {
-    try {
-      const response = await api.auth.login({
-        login: login,
-        password: password,
-      });
-      console.log(response.data);
-      dispatch(
-        setUser({
-          name: login,
+    if (login && password) {
+      try {
+        const response = await api.auth.login({
           login: login,
           password: password,
-          token: response.data.user_jwt,
-        })
-      );
-      navigate("/adminpanel");
-    } catch (error) {
-      console.log(error);
+        });
+        dispatch(
+          setUser({
+            name: login,
+            login: login,
+            password: password,
+            token: response.data.user_jwt,
+          })
+        );
+        navigate("/adminpanel");
+      } catch (error) {
+        setValid(true);
+        console.log(error);
+      }
+    } else {
+      setEmpty(true);
     }
   };
 
-  return <Form title="Login" handleClick={handleLogin} />;
+  return (
+    <Form
+      title="Login"
+      handleClick={handleLogin}
+      handleValid={setValid}
+      handleEmpty={setEmpty}
+      empty={empty}
+      valid={valid}
+    />
+  );
 }
 
 export default Login;

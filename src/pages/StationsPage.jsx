@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import Header from "../components/Header";
+import ListStations from "../components/ListStations";
 
 function StationsPage() {
   return (
-    <div>StationsPage</div>
-  )
+    <>
+      <Header />
+      <ListStations />
+    </>
+  );
 }
 
-export default StationsPage
+export default StationsPage;

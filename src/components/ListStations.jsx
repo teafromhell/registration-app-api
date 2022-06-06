@@ -1,17 +1,16 @@
-import api from "../services/api";
 import React, { useEffect, useState } from "react";
 import ListForm from "./ListForm";
+import api from "../services/api";
 
-function ListUsers() {
-  const [users, setUsers] = useState([]);
+function ListStations() {
+  const [stations, setStations] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        
-        const response = await api.auth.users();
+        const response = await api.auth.stations();
         const data = await response.data;
-        setUsers(data);
+        setStations(data);
       } catch (error) {
         console.log(error);
       }
@@ -19,22 +18,22 @@ function ListUsers() {
     fetchData();
   }, []);
 
-  const deleteUser = async (id) => {
+  const deleteStation = async (id) => {
     try {
-      await api.auth.deleteUser(`${id}`);
+      await api.auth.deleteStation(`${id}`);
     } catch (error) {
       console.log(error);
     }
-    setUsers(
-      users.filter((item) => {
+    setStations(
+      stations.filter((item) => {
         return item.id !== id;
       })
     );
   };
 
-  const editUser = async (edit, input) => {
-    setUsers(
-      users.map((item) => {
+  const editStation = async (edit, input) => {
+    setStations(
+      stations.map((item) => {
         if (item.id === edit.id) {
           return { ...item, ...input };
         }
@@ -42,7 +41,7 @@ function ListUsers() {
       })
     );
     try {
-      await api.auth.patchUser(`${edit.id}`, {
+      await api.auth.patchStation(`${edit.id}`, {
         ...edit,
         ...input,
       });
@@ -51,28 +50,28 @@ function ListUsers() {
     }
   };
 
-  const createUser = async (input) => {
-    
+  const createStation = async (input) => {
     try {
-      await api.auth.registration(input);
-      const response = await api.auth.users();
+      await api.auth.createStation(input);
+      const response = await api.auth.stations();
       const data = await response.data;
-      setUsers(data);
+      setStations(data);
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div>
       <ListForm
-        items={users}
-        handleDelete={deleteUser}
-        handleEdit={editUser}
-        title="User"
-        handleCreate={createUser}
+        items={stations}
+        handleCreate={createStation}
+        handleEdit={editStation}
+        title="Station"
+        handleDelete={deleteStation}
       />
     </div>
   );
 }
 
-export default ListUsers;
+export default ListStations;

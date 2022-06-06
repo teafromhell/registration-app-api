@@ -1,0 +1,36 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  outline: 1px solid black;
+  padding: 15px;
+  margin-top: 10px;
+
+  width: 300px;
+  background-color: gainsboro;
+  label {
+    margin: 10px 0;
+    align-self: flex-start;
+  }
+
+  input {
+    padding: 5px;
+    border: none;
+    outline: 1px solid black;
+  }
+  textarea {
+    padding: 5px;
+    resize: none;
+    height: 100px;
+    outline: 1px solid black;
+    border: none;
+    width: 100%;
+  }
+  button {
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 50%;
+    align-self: center;
+  }
+}

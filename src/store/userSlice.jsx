@@ -1,15 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-//import api from "../../services/api";
 
 const initialUser = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user"))
-  : null;
-
-// export const regUser = createAsyncThunk('users/createUser',
-//     async function({...post}, { rejectWithValue }){
-//         const response = await api.auth.login()
-//     }
-//     )
+  : {};
 
 export const userSlice = createSlice({
   name: "user",

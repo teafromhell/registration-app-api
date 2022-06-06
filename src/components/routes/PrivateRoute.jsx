@@ -2,12 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-function Req({ children }) {
+function PrivateRoute({ children }) {
   const { user } = useSelector((state) => state.user);
-  if (!user) {
+  if (!user.token) {
     return <Navigate to="/registration" />;
   }
   return children;
 }
 
-export default Req;
+export default PrivateRoute;

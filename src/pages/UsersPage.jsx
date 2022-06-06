@@ -1,10 +1,14 @@
-import React from 'react'
-import ListUsers from '../components/ListUsers'
+import React from "react";
+import Header from "../components/Header";
+import ListUsers from "../components/ListUsers";
 
 function UsersPage() {
   return (
-    <div><ListUsers/></div>
-  )
+    <>
+      <Header />
+      <ListUsers />
+    </>
+  );
 }
 
-export default UsersPage
+export default UsersPage;
